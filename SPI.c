@@ -199,7 +199,6 @@ void spi_init(void)
 //            1. Ensure that the SSE bit in the SSICR1 register is clear before making any configuration changes.
             SSI2_CR1_R &= ~(1<<1);
 //            2. Select whether the SSI is a master or slave:
-            SSI2_CR1_R = ~(1<<2); //master
 //            a. For master operations, set the SSICR1 register to 0x0000.0000.
 
 //            b. For slave mode (output enabled), set the SSICR1 register to 0x0000.0004.
@@ -218,6 +217,9 @@ void spi_init(void)
             SSI2_CR0_R |= (0xF<<0) | (1<<7);
 
 
+//            SSI2_CR1_R |= (1<<1);
+
+          //  SSI2_CR1_R &= ~(0b1);
             SSI2_CR1_R |= (1<<1);
 
             spi_write(options_pwm_1, (1<<8)|(48)); //enable PWM, 1kHz

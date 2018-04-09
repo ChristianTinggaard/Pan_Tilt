@@ -6,6 +6,7 @@
 #include "t_model.h"
 #include "tm4c123gh6pm.h"
 #include "lcd.h"
+//#include "lcd.h"
 #include "uart0.h"
 #include <stdint.h>
 
@@ -24,9 +25,13 @@ int main(void)
     lcd_init();
     lcd_cmd(CLEAR);
     lcd_display(51);
+//    lcd_init();
+//    lcd_cmd(CLEAR);
+//    lcd_display(51);
     INT16U LCD = 0;
 
     spi_write(set_pwm_1, 2+'0');
+    //spi_write(set_pwm_1, 2+'0');
     while(spi_is_busy()){}
     spi_write(set_pwm_1, 7+'0');
 
@@ -51,11 +56,11 @@ while(1)
         dummy = 0;
         dummy = spi_read();
 
+
         //dummy = dummy+'0';
 
 
 
-        uart0_putc(dummy & (0xff));
 
     for (LCD = 0; LCD < 10000; ++LCD) {
 
